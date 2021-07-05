@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Films</string>
+    <string name="hint_film_name">Название фильма</string>
+    <string name="hint_film_duration">Продолжительность, мин.</string>
+    <string name="button_add">Добавить</string>
+    <string name="button_print">Распечатать</string>
+    <string name="button_copy">Копировать новинку</string>
 </resources>
