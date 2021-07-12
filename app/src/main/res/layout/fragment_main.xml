@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/default_padding">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/new_title"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/title_text_size" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/new_films_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="horizontal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/coming_title"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/title_text_size" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/coming_films_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="horizontal" />
+
+    </LinearLayout>
+
+</ScrollView>

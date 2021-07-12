@@ -1,54 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/default_padding">
+    android:id="@+id/fragment_container" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/film_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_film_name"
-        android:inputType="text" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/film_duration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_film_duration"
-        android:inputType="number" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_add"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/button_add" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_print"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/button_print" />
-
-    </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_copy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_copy" />
-
-    <LinearLayout
-        android:id="@+id/linear_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
-
-</LinearLayout>
