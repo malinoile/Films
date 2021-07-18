@@ -1,6 +1,7 @@
 package ru.malinoil.films
 
 import androidx.lifecycle.MutableLiveData
+import ru.malinoil.films.model.Film
 
 class FilmsRepositoryImpl {
     var newFilmsList = MutableLiveData<MutableList<Film>>()

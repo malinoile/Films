@@ -5,8 +5,12 @@
     <string name="button_add">Добавить</string>
     <string name="button_print">Распечатать</string>
     <string name="button_copy">Копировать новинку</string>
+
     <string name="new_title">Новинки</string>
     <string name="coming_title">Скоро...</string>
+    <string name="high_rate_title">Высокий рейтинг</string>
+    <string name="now_title">Сейчас смотрят</string>
+
     <string name="main">Главная</string>
     <string name="favorite">Избранное</string>
     <string name="category">Категории</string>

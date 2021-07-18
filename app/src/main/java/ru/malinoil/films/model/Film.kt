@@ -1,4 +1,4 @@
-package ru.malinoil.films
+package ru.malinoil.films.model
 
 data class Film(
         val name: String?,
