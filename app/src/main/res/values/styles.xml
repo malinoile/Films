@@ -6,7 +6,22 @@
     </style>
 
     <style name="small_text_on_card" parent="text_on_card">
-        <item name="android:textSize">@dimen/text_on_card_size</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
         <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="text_around_image_film">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:padding">@dimen/smallest_padding</item>
+    </style>
+
+    <style name="full_width_text_around_image_film" parent="text_around_image_film">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="nullable_width_text_around_image_film" parent="text_around_image_film">
+        <item name="android:layout_width">0dp</item>
     </style>
 </resources>
