@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Films</string>
     <string name="hint_film_name">Название фильма</string>
-    <string name="hint_film_duration">Продолжительность, мин.</string>
+    <string name="film_duration">Продолжительность, мин.</string>
     <string name="button_add">Добавить</string>
     <string name="button_print">Распечатать</string>
     <string name="button_copy">Копировать новинку</string>
@@ -16,4 +16,8 @@
     <string name="category">Категории</string>
     <string name="search">Поиск</string>
     <string name="settings">Настройки</string>
+
+    <string name="fake_budget">Бюджет: $1 млн</string>
+    <string name="fake_fees">Сборы: $2.5 млн</string>
+    <string name="fake_description">Фейковое описание фильма</string>
 </resources>

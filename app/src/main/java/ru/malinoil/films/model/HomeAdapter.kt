@@ -7,15 +7,21 @@ import ru.malinoil.films.R
 
 class HomeAdapter : RecyclerView.Adapter<HomeComponentHolder>() {
     private var list: List<HomeComponent> = emptyList()
+    private var filmClickListener: FilmsAdapter.OnFilmClickListener? = null
 
     fun setList(components: List<HomeComponent>) {
         list = components
     }
 
+    fun setOnFilmClickListener(filmClickListener: FilmsAdapter.OnFilmClickListener) {
+        this.filmClickListener = filmClickListener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeComponentHolder {
         return HomeComponentHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.home_component, parent, false)
+                .inflate(R.layout.home_component, parent, false),
+            filmClickListener
         )
     }
 

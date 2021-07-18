@@ -7,18 +7,26 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.malinoil.films.R
 import ru.malinoil.films.databinding.FilmCardBinding
 
-class FilmHolder(parent: ViewGroup) :
+class FilmHolder(parent: ViewGroup, filmClickListener: FilmsAdapter.OnFilmClickListener?) :
     RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.film_card, parent, false)
     ) {
     private var binding: FilmCardBinding? = null
+    private var film: Film? = null
 
     init {
         binding = FilmCardBinding.bind(itemView)
+
+        itemView.setOnClickListener {
+            film?.let {
+                filmClickListener?.onClick(it)
+            }
+        }
     }
 
     fun bind(film: Film) {
         fillCard(film)
+        this.film = film
     }
 
     private fun fillCard(film: Film) {

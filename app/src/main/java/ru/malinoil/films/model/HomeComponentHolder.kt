@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.malinoil.films.R
 import ru.malinoil.films.databinding.HomeComponentBinding
 
-class HomeComponentHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class HomeComponentHolder(itemView: View, listener: FilmsAdapter.OnFilmClickListener?) :
+    RecyclerView.ViewHolder(itemView) {
     private var binding: HomeComponentBinding? = null
+    private var filmClickListener: FilmsAdapter.OnFilmClickListener? = listener
 
     init {
         binding = HomeComponentBinding.bind(itemView)
@@ -17,6 +19,7 @@ class HomeComponentHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         binding?.run {
             val adapter = FilmsAdapter()
             adapter.setList(component.listFilms)
+            adapter.setOnFilmClickListener(filmClickListener)
             typeTitleTextView.text = getTitleTypeName(component.type)
             filmRecycler.layoutManager =
                 LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
