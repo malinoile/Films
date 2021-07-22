@@ -36,4 +36,5 @@ class HomeComponentHolder(itemView: View, listener: FilmsAdapter.OnFilmClickList
         }
     }
 
+
 }
