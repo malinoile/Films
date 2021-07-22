@@ -39,4 +39,5 @@ class FilmHolder(parent: ViewGroup, filmClickListener: FilmsAdapter.OnFilmClickL
             binding?.filmImageView?.setImageURI(Uri.parse(film.imageSrc))
         }
     }
+
 }

@@ -3,6 +3,7 @@ package ru.malinoil.films
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.malinoil.films.databinding.ActivityMainBinding
 import ru.malinoil.films.fragment.FilmFragment
 import ru.malinoil.films.fragment.ListFragment
@@ -42,7 +43,9 @@ class MainActivity : AppCompatActivity(), ListFragment.Contract {
     }
 
     private fun initBottomNavigationMenu() {
-        binding!!.bottomNavigation.setOnNavigationItemSelectedListener {
+        //Не могу понять, почему с binding.bottomNavigation не работает
+        val navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_main -> {
                     supportFragmentManager.beginTransaction()
@@ -58,7 +61,7 @@ class MainActivity : AppCompatActivity(), ListFragment.Contract {
                 R.id.navigation_category -> {
                 }
             }
-            true
+            return@setOnNavigationItemSelectedListener true
         }
     }
 

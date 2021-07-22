@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.malinoil.films.R
 import ru.malinoil.films.databinding.FragmentMainBinding
-import ru.malinoil.films.model.*
+import ru.malinoil.films.model.ComponentsRepository
+import ru.malinoil.films.model.Film
+import ru.malinoil.films.model.FilmsAdapter
+import ru.malinoil.films.model.HomeAdapter
 
 class ListFragment : Fragment() {
     private var binding: FragmentMainBinding? = null
@@ -39,7 +42,7 @@ class ListFragment : Fragment() {
                 getContract().openFilm(film)
             }
         })
-        adapter!!.setList(getTestList())
+        adapter!!.setList(ComponentsRepository.getInstance().getComponents()!!)
 
         binding!!.homeRecycler.layoutManager = LinearLayoutManager(context)
         binding!!.homeRecycler.adapter = adapter
@@ -48,20 +51,6 @@ class ListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
-    }
-
-    //Формирую заглушечный список фильмов
-    private fun getTestList(): List<HomeComponent> {
-        var filmsList = ArrayList<Film>()
-        filmsList.add(Film("Интерстеллар", 2014, 9.2f, 135, null))
-        filmsList.add(Film("Форсаж 9", 2021, 6.5f, 100, null))
-        filmsList.add(Film("Начало", 2015, 9.4f, 130, null))
-        val list = ArrayList<HomeComponent>()
-        list.add(HomeComponent(TitleType.NEWEST, filmsList))
-        list.add(HomeComponent(TitleType.NOW, filmsList))
-        list.add(HomeComponent(TitleType.HIGH_RATE, filmsList))
-        list.add(HomeComponent(TitleType.COMING_SOON, filmsList))
-        return list
     }
 
     private fun getContract(): Contract {
