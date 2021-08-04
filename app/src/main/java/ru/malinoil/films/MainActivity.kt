@@ -7,7 +7,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.malinoil.films.databinding.ActivityMainBinding
 import ru.malinoil.films.fragment.FilmFragment
 import ru.malinoil.films.fragment.ListFragment
-import ru.malinoil.films.model.Film
+import ru.malinoil.films.model.entities.FilmEntity
 
 private const val HOME_TAG = "home"
 
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), ListFragment.Contract {
         return true
     }
 
-    override fun openFilm(film: Film) {
+    override fun openFilm(film: FilmEntity) {
         supportFragmentManager
             .beginTransaction()
             .addToBackStack(null)

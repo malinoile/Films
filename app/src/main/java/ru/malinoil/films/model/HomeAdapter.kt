@@ -4,28 +4,29 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.malinoil.films.R
+import ru.malinoil.films.model.entities.CategoryEntity
 
-class HomeAdapter : RecyclerView.Adapter<HomeComponentHolder>() {
-    private var list: List<HomeComponent> = emptyList()
+class HomeAdapter : RecyclerView.Adapter<HomeCategoryHolder>() {
+    private var list: List<CategoryEntity> = emptyList()
     private var filmClickListener: FilmsAdapter.OnFilmClickListener? = null
 
-    fun setList(components: List<HomeComponent>) {
-        list = components
+    fun setList(categories: List<CategoryEntity>) {
+        list = categories
     }
 
     fun setOnFilmClickListener(filmClickListener: FilmsAdapter.OnFilmClickListener) {
         this.filmClickListener = filmClickListener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeComponentHolder {
-        return HomeComponentHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeCategoryHolder {
+        return HomeCategoryHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.home_component, parent, false),
+                .inflate(R.layout.films_category, parent, false),
             filmClickListener
         )
     }
 
-    override fun onBindViewHolder(holder: HomeComponentHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeCategoryHolder, position: Int) {
         holder.bind(list[position])
     }
 

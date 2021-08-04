@@ -2,12 +2,13 @@ package ru.malinoil.films.model
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ru.malinoil.films.model.entities.FilmEntity
 
 class FilmsAdapter : RecyclerView.Adapter<FilmHolder>() {
-    private var listFilms: List<Film> = emptyList()
+    private var listFilms: List<FilmEntity> = emptyList()
     private var filmClickListener: OnFilmClickListener? = null
 
-    fun setList(list: List<Film>) {
+    fun setList(list: List<FilmEntity>) {
         listFilms = list;
     }
 
@@ -28,6 +29,6 @@ class FilmsAdapter : RecyclerView.Adapter<FilmHolder>() {
     }
 
     interface OnFilmClickListener {
-        fun onClick(film: Film)
+        fun onClick(film: FilmEntity)
     }
 }
