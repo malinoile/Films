@@ -4,23 +4,24 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.malinoil.films.R
-import ru.malinoil.films.databinding.HomeComponentBinding
+import ru.malinoil.films.databinding.FilmsCategoryBinding
+import ru.malinoil.films.model.entities.CategoryEntity
 
-class HomeComponentHolder(itemView: View, listener: FilmsAdapter.OnFilmClickListener?) :
+class HomeCategoryHolder(itemView: View, listener: FilmsAdapter.OnFilmClickListener?) :
     RecyclerView.ViewHolder(itemView) {
-    private var binding: HomeComponentBinding? = null
+    private var binding: FilmsCategoryBinding? = null
     private var filmClickListener: FilmsAdapter.OnFilmClickListener? = listener
 
     init {
-        binding = HomeComponentBinding.bind(itemView)
+        binding = FilmsCategoryBinding.bind(itemView)
     }
 
-    fun bind(component: HomeComponent) {
+    fun bind(componentEntity: CategoryEntity) {
         binding?.run {
             val adapter = FilmsAdapter()
-            adapter.setList(component.listFilms)
+            adapter.setList(componentEntity.listFilms)
             adapter.setOnFilmClickListener(filmClickListener)
-            typeTitleTextView.text = getTitleTypeName(component.type)
+            typeTitleTextView.text = getTitleTypeName(componentEntity.type)
             filmRecycler.layoutManager =
                 LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
             filmRecycler.adapter = adapter

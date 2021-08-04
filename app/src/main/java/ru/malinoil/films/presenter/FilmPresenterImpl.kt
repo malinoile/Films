@@ -1,13 +1,13 @@
 package ru.malinoil.films.presenter
 
 import ru.malinoil.films.FilmsContract
-import ru.malinoil.films.model.Film
 import ru.malinoil.films.model.FilmsRepository
+import ru.malinoil.films.model.entities.FilmEntity
 
-class FilmPresenterImpl(film: Film) : FilmsContract.Presenter {
+class FilmPresenterImpl(film: FilmEntity) : FilmsContract.Presenter {
     private var view: FilmsContract.View? = null
     private var filmsRepo: FilmsRepository = FilmsRepository.getInstance()
-    private var film: Film? = null
+    private var film: FilmEntity? = null
 
     init {
         this.film = film

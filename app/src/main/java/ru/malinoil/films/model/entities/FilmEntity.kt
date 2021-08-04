@@ -1,14 +1,15 @@
-package ru.malinoil.films.model
+package ru.malinoil.films.model.entities
 
 import android.os.Parcel
 import android.os.Parcelable
+import ru.malinoil.films.model.TitleType
 import java.util.*
 
-data class Film(
-    val name: String?,
+data class FilmEntity(
+    val name: String,
     val year: Int,
     var rate: Float?,
-    val duration: Int?,
+    var description: String?,
     var imageSrc: String?,
     var type: TitleType?
 ) : Parcelable {
@@ -20,10 +21,10 @@ data class Film(
     var originalName: String? = null
 
     constructor(parcel: Parcel) : this(
-        parcel.readString(),
+        parcel.readString().toString(),
         parcel.readInt(),
         parcel.readValue(Float::class.java.classLoader) as? Float,
-        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readString(),
         parcel.readString(),
         TODO("type")
     ) {
@@ -38,7 +39,7 @@ data class Film(
         parcel.writeString(name)
         parcel.writeInt(year)
         parcel.writeValue(rate)
-        parcel.writeValue(duration)
+        parcel.writeString(description)
         parcel.writeString(imageSrc)
         parcel.writeByte(if (isFavorite) 1 else 0)
         parcel.writeValue(budget)
@@ -51,12 +52,12 @@ data class Film(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<Film> {
-        override fun createFromParcel(parcel: Parcel): Film {
-            return Film(parcel)
+    companion object CREATOR : Parcelable.Creator<FilmEntity> {
+        override fun createFromParcel(parcel: Parcel): FilmEntity {
+            return FilmEntity(parcel)
         }
 
-        override fun newArray(size: Int): Array<Film?> {
+        override fun newArray(size: Int): Array<FilmEntity?> {
             return arrayOfNulls(size)
         }
     }

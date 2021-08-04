@@ -9,19 +9,19 @@ import androidx.fragment.app.Fragment
 import ru.malinoil.films.FilmsContract
 import ru.malinoil.films.R
 import ru.malinoil.films.databinding.FragmentFilmBinding
-import ru.malinoil.films.model.Film
+import ru.malinoil.films.model.entities.FilmEntity
 import ru.malinoil.films.presenter.FilmPresenterImpl
-
-private const val FILM_EXTRA_KEY = "FILM_EXTRA_KEY"
 
 class FilmFragment : Fragment(), FilmsContract.View {
 
     private var binding: FragmentFilmBinding? = null
-    private var film: Film? = null
+    private var film: FilmEntity? = null
     private var presenter: FilmPresenterImpl? = null
 
     companion object {
-        fun getInstance(film: Film?): FilmFragment {
+        private const val FILM_EXTRA_KEY = "FILM_EXTRA_KEY"
+
+        fun getInstance(film: FilmEntity?): FilmFragment {
             val fragment = FilmFragment()
             val bundle = Bundle()
             bundle.putParcelable(FILM_EXTRA_KEY, film)
@@ -55,11 +55,9 @@ class FilmFragment : Fragment(), FilmsContract.View {
         initializeInfo(film)
     }
 
-    private fun initializeInfo(film: Film?) {
+    private fun initializeInfo(film: FilmEntity?) {
         film?.let {
             binding!!.filmTitleTextView.text = it.name
-            binding!!.durationTextView.text =
-                "${context?.getString(R.string.film_duration)}: ${it.duration}"
             binding!!.filmRateTextView.text = it.rate.toString()
             binding!!.originalTitleTextView.text = "${it.name} (${it.year})"
             binding!!.budgetTextView.text = context?.getString(R.string.fake_budget)
