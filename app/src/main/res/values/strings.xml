@@ -5,6 +5,7 @@
     <string name="button_add">Добавить</string>
     <string name="button_print">Распечатать</string>
     <string name="button_copy">Копировать новинку</string>
+    <string name="change_connectivity">Изменен способ подключения к интернету</string>
 
     <string name="new_title">Новинки</string>
     <string name="coming_title">Скоро...</string>
