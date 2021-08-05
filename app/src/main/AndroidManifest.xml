@@ -27,6 +27,8 @@
                     tools:ignore="BatteryLife" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".TestService" />
     </application>
 
 </manifest>

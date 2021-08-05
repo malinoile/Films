@@ -1,5 +1,6 @@
 package ru.malinoil.films
 
+import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
@@ -62,6 +63,7 @@ class MainActivity : AppCompatActivity(), ListFragment.Contract {
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 }
                 R.id.navigation_favorite -> {
+                    initService()
                 }
                 R.id.navigation_category -> {
                 }
@@ -79,5 +81,9 @@ class MainActivity : AppCompatActivity(), ListFragment.Contract {
     override fun onDestroy() {
         unregisterReceiver(receiver)
         super.onDestroy()
+    }
+
+    fun initService() {
+        startService(Intent(this@MainActivity, TestService::class.java))
     }
 }
