@@ -1,5 +1,7 @@
 package ru.malinoil.films
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +15,7 @@ private const val HOME_TAG = "home"
 
 class MainActivity : AppCompatActivity(), ListFragment.Contract {
     private lateinit var binding: ActivityMainBinding
+    private val receiver = ConnectivityReceiver()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +28,8 @@ class MainActivity : AppCompatActivity(), ListFragment.Contract {
             .commit()
 
         initBottomNavigationMenu()
+
+        registerReceiver(receiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -69,5 +74,10 @@ class MainActivity : AppCompatActivity(), ListFragment.Contract {
         onBackPressed()
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         return true
+    }
+
+    override fun onDestroy() {
+        unregisterReceiver(receiver)
+        super.onDestroy()
     }
 }
