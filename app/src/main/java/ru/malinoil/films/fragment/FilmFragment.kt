@@ -57,13 +57,14 @@ class FilmFragment : Fragment(), FilmsContract.View {
 
     private fun initializeInfo(film: FilmEntity?) {
         film?.let {
+            val year = it.releaseDate.split("-")[0]
             binding!!.filmTitleTextView.text = it.name
             binding!!.filmRateTextView.text = it.rate.toString()
-            binding!!.originalTitleTextView.text = "${it.name} (${it.year})"
+            binding!!.originalTitleTextView.text = "${it.original} ($year)"
             binding!!.budgetTextView.text = context?.getString(R.string.fake_budget)
             binding!!.feesTextView.text = context?.getString(R.string.fake_fees)
-            binding!!.descriptionTextView.text = context?.getString(R.string.fake_description)
-            binding!!.genresAndYearTextView.text = "${it.year},"
+            binding!!.descriptionTextView.text = it.description
+            binding!!.genresAndYearTextView.text = "$year,"
             binding!!.favoriteToggleButton.setOnClickListener {
                 presenter!!.onClickHeart()
             }
