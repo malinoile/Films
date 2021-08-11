@@ -4,12 +4,12 @@ import ru.malinoil.films.model.entities.CategoryEntity
 
 interface CategoriesContract {
     interface View {
-        fun updateData(list: MutableList<CategoryEntity>)
+        fun updateData(list: List<CategoryEntity>)
     }
 
     interface Presenter {
         fun attach(view: View)
-        fun initializeCategories()
+        fun getCategories(): List<CategoryEntity>
         fun detach()
     }
 }
