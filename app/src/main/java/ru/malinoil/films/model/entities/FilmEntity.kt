@@ -16,10 +16,11 @@ data class FilmEntity(
     @SerializedName("vote_average")
     var rate: Float?,
     @SerializedName("overview")
-    var description: String?
+    var description: String?,
+    @SerializedName("poster_path")
+    val poster: String?
 ) : Parcelable {
     val id: String = UUID.randomUUID().toString()
-    var imageSrc: String? = null
     var type: TitleType? = null
     var isFavorite: Boolean = false
     var budget: Int? = null
@@ -31,9 +32,9 @@ data class FilmEntity(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readValue(Float::class.java.classLoader) as? Float,
+        parcel.readString(),
         parcel.readString()
     ) {
-        imageSrc = parcel.readString()
         isFavorite = parcel.readByte() != 0.toByte()
         budget = parcel.readValue(Int::class.java.classLoader) as? Int
         fees = parcel.readValue(Int::class.java.classLoader) as? Int
@@ -46,7 +47,7 @@ data class FilmEntity(
         parcel.writeString(releaseDate)
         parcel.writeValue(rate)
         parcel.writeString(description)
-        parcel.writeString(imageSrc)
+        parcel.writeString(poster)
         parcel.writeByte(if (isFavorite) 1 else 0)
         parcel.writeValue(budget)
         parcel.writeValue(fees)
