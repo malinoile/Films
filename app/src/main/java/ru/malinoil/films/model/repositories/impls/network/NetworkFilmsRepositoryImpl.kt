@@ -1,12 +1,11 @@
-package ru.malinoil.films.model.impls
+package ru.malinoil.films.model.repositories.impls.network
 
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import ru.malinoil.films.model.FilmsAPI
-import ru.malinoil.films.model.TitleType
 import ru.malinoil.films.model.entities.ResultEntity
+import ru.malinoil.films.model.entities.TitleType
 import ru.malinoil.films.model.repositories.FilmsRepository
 
 private const val TOP_RATED_URL = "top_rated"

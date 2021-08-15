@@ -3,12 +3,14 @@ package ru.malinoil.films.model.entities
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import ru.malinoil.films.model.TitleType
-import java.util.*
 
 data class FilmEntity(
+    @SerializedName("id")
+    val id: Int,
     @SerializedName("title")
     val name: String,
+    @SerializedName("adult")
+    val isAdult: Boolean,
     @SerializedName("original_title")
     val original: String,
     @SerializedName("release_date")
@@ -20,7 +22,6 @@ data class FilmEntity(
     @SerializedName("poster_path")
     val poster: String?
 ) : Parcelable {
-    val id: String = UUID.randomUUID().toString()
     var type: TitleType? = null
     var isFavorite: Boolean = false
     var budget: Int? = null
@@ -28,7 +29,9 @@ data class FilmEntity(
     var genres: String? = null
 
     constructor(parcel: Parcel) : this(
+        parcel.readInt(),
         parcel.readString().toString(),
+        parcel.readByte() != 0.toByte(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readValue(Float::class.java.classLoader) as? Float,
@@ -42,7 +45,9 @@ data class FilmEntity(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
         parcel.writeString(name)
+        parcel.writeByte(if (isAdult) 1 else 0)
         parcel.writeString(original)
         parcel.writeString(releaseDate)
         parcel.writeValue(rate)
@@ -67,5 +72,6 @@ data class FilmEntity(
             return arrayOfNulls(size)
         }
     }
+
 
 }

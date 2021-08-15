@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.malinoil.films.R
 import ru.malinoil.films.databinding.FilmsCategoryBinding
 import ru.malinoil.films.model.entities.CategoryEntity
+import ru.malinoil.films.model.entities.TitleType
 
 class HomeAdapter : RecyclerView.Adapter<HomeCategoryHolder>() {
     private var list: List<CategoryEntity> = emptyList()
