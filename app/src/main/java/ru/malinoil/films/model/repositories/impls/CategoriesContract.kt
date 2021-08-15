@@ -1,4 +1,4 @@
-package ru.malinoil.films
+package ru.malinoil.films.model.repositories.impls
 
 import ru.malinoil.films.model.entities.CategoryEntity
 

@@ -1,26 +1,31 @@
-package ru.malinoil.films.fragment
+package ru.malinoil.films.ui.fragment
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
-import ru.malinoil.films.FilmsContract
+import ru.malinoil.films.MyApplication
 import ru.malinoil.films.R
 import ru.malinoil.films.databinding.FragmentFilmBinding
 import ru.malinoil.films.model.entities.FilmEntity
+import ru.malinoil.films.model.repositories.impls.FilmsContract
+import ru.malinoil.films.model.repositories.impls.room.NoteDTO
 import ru.malinoil.films.presenter.FilmPresenterImpl
 
 class FilmFragment : Fragment(), FilmsContract.View {
 
     private var binding: FragmentFilmBinding? = null
     private var film: FilmEntity? = null
+    private var note: NoteDTO? = null
     private var presenter: FilmPresenterImpl? = null
+    private val app: MyApplication by lazy { activity?.application as MyApplication }
 
     companion object {
         private const val FILM_EXTRA_KEY = "FILM_EXTRA_KEY"
-
         fun getInstance(film: FilmEntity?): FilmFragment {
             val fragment = FilmFragment()
             val bundle = Bundle()
@@ -35,7 +40,7 @@ class FilmFragment : Fragment(), FilmsContract.View {
         super.onAttach(context)
         film = arguments?.getParcelable(FILM_EXTRA_KEY)
         film?.let {
-            presenter = FilmPresenterImpl(it)
+            presenter = FilmPresenterImpl(app.database, it)
             presenter!!.attach(this)
         }
     }
@@ -53,6 +58,14 @@ class FilmFragment : Fragment(), FilmsContract.View {
         binding = FragmentFilmBinding.bind(view)
 
         initializeInfo(film)
+        presenter?.getNote(film!!.id)
+
+        binding!!.addNoteButton.setOnClickListener {
+            buildDialog()
+        }
+        binding!!.deleteNoteButton.setOnClickListener {
+            film?.id?.let { filmId -> presenter?.deleteNote(filmId) }
+        }
     }
 
     private fun initializeInfo(film: FilmEntity?) {
@@ -72,6 +85,24 @@ class FilmFragment : Fragment(), FilmsContract.View {
         }
     }
 
+    private fun buildDialog() {
+        val editText = EditText(context)
+        AlertDialog.Builder(context)
+            .setTitle(context?.getString(R.string.edit_note))
+            .setView(editText)
+            .setPositiveButton(
+                context?.getString(R.string.ok_button)
+            ) { _, _ ->
+                presenter?.updateNote(NoteDTO(null, film!!.id, editText.text.toString()))
+            }
+            .setNegativeButton(
+                context?.getString(R.string.cancel_button)
+            ) { dialog, _ ->
+                dialog.cancel()
+            }
+            .show()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
@@ -79,6 +110,25 @@ class FilmFragment : Fragment(), FilmsContract.View {
 
     override fun renderHeart(check: Boolean) {
         binding!!.favoriteToggleButton.isChecked = check
+    }
+
+    override fun renderNote(note: NoteDTO?) {
+        note?.let {
+            this.note = it
+            binding!!.noteTextView.text = it.text
+            setVisibility(View.VISIBLE)
+        }
+    }
+
+    override fun deleteNote() {
+        binding!!.noteTextView.text = ""
+        setVisibility(View.INVISIBLE)
+        note = null
+    }
+
+    private fun setVisibility(visibility: Int) {
+        binding!!.deleteNoteButton.visibility = visibility
+        binding!!.noteTextView.visibility = visibility
     }
 
 }

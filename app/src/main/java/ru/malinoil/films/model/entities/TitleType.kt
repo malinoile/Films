@@ -1,4 +1,4 @@
-package ru.malinoil.films.model
+package ru.malinoil.films.model.entities
 
 enum class TitleType {
     NEWEST,

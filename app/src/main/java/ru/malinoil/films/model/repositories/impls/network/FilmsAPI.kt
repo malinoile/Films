@@ -1,4 +1,4 @@
-package ru.malinoil.films.model
+package ru.malinoil.films.model.repositories.impls.network
 
 import retrofit2.Call
 import retrofit2.http.GET

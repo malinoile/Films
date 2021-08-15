@@ -6,6 +6,9 @@
     <string name="button_print">Распечатать</string>
     <string name="button_copy">Копировать новинку</string>
     <string name="change_connectivity">Изменен способ подключения к интернету</string>
+    <string name="edit_note">Редактирование заметки</string>
+    <string name="ok_button">Ок</string>
+    <string name="cancel_button">Отмена</string>
 
     <string name="new_title">Новинки</string>
     <string name="coming_title">Скоро...</string>
@@ -21,4 +24,7 @@
     <string name="fake_budget">Бюджет: $1 млн</string>
     <string name="fake_fees">Сборы: $2.5 млн</string>
     <string name="fake_description">Фейковое описание фильма</string>
+    <string name="enable_adult_content">Включить контент для взрослых</string>
+    <string name="note">Заметка</string>
+    <string name="delete_note">Удалить</string>
 </resources>

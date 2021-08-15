@@ -1,4 +1,4 @@
-package ru.malinoil.films.fragment
+package ru.malinoil.films.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.malinoil.films.CategoriesContract
 import ru.malinoil.films.MyApplication
 import ru.malinoil.films.R
 import ru.malinoil.films.databinding.FragmentMainBinding
@@ -15,9 +14,10 @@ import ru.malinoil.films.model.FilmsAdapter
 import ru.malinoil.films.model.HomeAdapter
 import ru.malinoil.films.model.entities.CategoryEntity
 import ru.malinoil.films.model.entities.FilmEntity
+import ru.malinoil.films.model.repositories.impls.CategoriesContract
 import ru.malinoil.films.presenter.CategoriesPresenterImpl
 
-class ListFragment : Fragment(), CategoriesContract.View {
+class ListFragment() : Fragment(), CategoriesContract.View {
     private var binding: FragmentMainBinding? = null
     private var adapter: HomeAdapter? = null
     private val app: MyApplication by lazy { activity?.application as MyApplication }

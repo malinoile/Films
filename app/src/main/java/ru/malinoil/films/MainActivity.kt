@@ -1,21 +1,20 @@
 package ru.malinoil.films
 
-import android.content.IntentFilter
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.malinoil.films.databinding.ActivityMainBinding
-import ru.malinoil.films.fragment.FilmFragment
-import ru.malinoil.films.fragment.ListFragment
 import ru.malinoil.films.model.entities.FilmEntity
+import ru.malinoil.films.ui.fragment.FilmFragment
+import ru.malinoil.films.ui.fragment.ListFragment
+import ru.malinoil.films.ui.fragment.SettingsFragment
 
 private const val HOME_TAG = "home"
 
 class MainActivity : AppCompatActivity(), ListFragment.Contract {
     private lateinit var binding: ActivityMainBinding
-    private val receiver = ConnectivityReceiver()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,13 +27,26 @@ class MainActivity : AppCompatActivity(), ListFragment.Contract {
             .commit()
 
         initBottomNavigationMenu()
-
-        registerReceiver(receiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_navigation_menu, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.navigation_settings -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .addToBackStack(null)
+                    .replace(binding.fragmentContainer.id, SettingsFragment())
+                    .commit()
+
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun openFilm(film: FilmEntity) {
@@ -48,7 +60,6 @@ class MainActivity : AppCompatActivity(), ListFragment.Contract {
     }
 
     private fun initBottomNavigationMenu() {
-        //Не могу понять, почему с binding.bottomNavigation не работает
         val navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -78,7 +89,6 @@ class MainActivity : AppCompatActivity(), ListFragment.Contract {
     }
 
     override fun onDestroy() {
-        unregisterReceiver(receiver)
         super.onDestroy()
     }
 }
