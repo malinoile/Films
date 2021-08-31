@@ -18,7 +18,8 @@ import ru.malinoil.films.presenter.FilmPresenterImpl
 
 class FilmFragment : Fragment(), FilmsContract.View {
 
-    private var binding: FragmentFilmBinding? = null
+    private var _binding: FragmentFilmBinding? = null
+    private val binding get() = _binding!!
     private var film: FilmEntity? = null
     private var note: NoteDTO? = null
     private var presenter: FilmPresenterImpl? = null
@@ -55,7 +56,7 @@ class FilmFragment : Fragment(), FilmsContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentFilmBinding.bind(view)
+        _binding = FragmentFilmBinding.bind(view)
 
         initializeInfo(film)
         presenter?.getNote(film!!.id)
@@ -71,17 +72,19 @@ class FilmFragment : Fragment(), FilmsContract.View {
     private fun initializeInfo(film: FilmEntity?) {
         film?.let {
             val year = it.releaseDate.split("-")[0]
-            binding!!.filmTitleTextView.text = it.name
-            binding!!.filmRateTextView.text = it.rate.toString()
-            binding!!.originalTitleTextView.text = "${it.original} ($year)"
-            binding!!.budgetTextView.text = context?.getString(R.string.fake_budget)
-            binding!!.feesTextView.text = context?.getString(R.string.fake_fees)
-            binding!!.descriptionTextView.text = it.description
-            binding!!.genresAndYearTextView.text = "$year,"
-            binding!!.favoriteToggleButton.setOnClickListener {
-                presenter!!.onClickHeart()
+            binding.apply {
+                filmTitleTextView.text = it.name
+                filmRateTextView.text = it.rate.toString()
+                originalTitleTextView.text = "${it.original} ($year)"
+                budgetTextView.text = context?.getString(R.string.fake_budget)
+                feesTextView.text = context?.getString(R.string.fake_fees)
+                descriptionTextView.text = it.description
+                genresAndYearTextView.text = "$year,"
+                favoriteToggleButton.setOnClickListener {
+                    presenter!!.onClickHeart()
+                }
+                renderHeart(it.isFavorite)
             }
-            renderHeart(it.isFavorite)
         }
     }
 
@@ -104,31 +107,33 @@ class FilmFragment : Fragment(), FilmsContract.View {
     }
 
     override fun onDestroyView() {
+        _binding = null
         super.onDestroyView()
-        binding = null
     }
 
     override fun renderHeart(check: Boolean) {
-        binding!!.favoriteToggleButton.isChecked = check
+        binding.favoriteToggleButton.isChecked = check
     }
 
     override fun renderNote(note: NoteDTO?) {
         note?.let {
             this.note = it
-            binding!!.noteTextView.text = it.text
+            binding.noteTextView.text = it.text
             setVisibility(View.VISIBLE)
         }
     }
 
     override fun deleteNote() {
-        binding!!.noteTextView.text = ""
+        binding.noteTextView.text = ""
         setVisibility(View.INVISIBLE)
         note = null
     }
 
     private fun setVisibility(visibility: Int) {
-        binding!!.deleteNoteButton.visibility = visibility
-        binding!!.noteTextView.visibility = visibility
+        binding.apply {
+            deleteNoteButton.visibility = visibility
+            noteTextView.visibility = visibility
+        }
     }
 
 }

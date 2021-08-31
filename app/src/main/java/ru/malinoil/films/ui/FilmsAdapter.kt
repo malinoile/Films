@@ -1,4 +1,4 @@
-package ru.malinoil.films.model
+package ru.malinoil.films.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

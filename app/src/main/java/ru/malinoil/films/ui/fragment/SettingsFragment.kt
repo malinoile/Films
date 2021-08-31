@@ -13,7 +13,8 @@ const val SETTINGS_PREFERENCES = "settings_prefs"
 const val PREFERENCE_ADULT_NAME = "adult"
 
 class SettingsFragment : Fragment() {
-    private var binding: FragmentSettingsBinding? = null
+    private var _binding: FragmentSettingsBinding? = null
+    private val binding get() = _binding!!
     private val prefs by lazy {
         context?.getSharedPreferences(SETTINGS_PREFERENCES, Context.MODE_PRIVATE)
     }
@@ -28,7 +29,7 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentSettingsBinding.bind(view)
+        _binding = FragmentSettingsBinding.bind(view)
 
         prefs?.let {
             if (it.contains(PREFERENCE_ADULT_NAME)) {
@@ -39,20 +40,18 @@ class SettingsFragment : Fragment() {
 
     override fun onPause() {
         prefs?.apply {
-            edit().putBoolean(PREFERENCE_ADULT_NAME, binding!!.adultCheckBox.isChecked).apply()
+            edit().putBoolean(PREFERENCE_ADULT_NAME, binding.adultCheckBox.isChecked).apply()
         }
         super.onPause()
     }
 
     override fun onDestroyView() {
-        binding = null
+        _binding = null
         super.onDestroyView()
     }
 
     private fun setCheckboxValue(check: Boolean) {
-        binding?.apply {
-            adultCheckBox.isChecked = check
-        }
+        binding.adultCheckBox.isChecked = check
     }
 
 }

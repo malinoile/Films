@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Films</string>
+    <string name="provider_authorities">content://ru.malinoil.films.contacts.provider</string>
+
     <string name="hint_film_name">Название фильма</string>
     <string name="film_duration">Продолжительность, мин.</string>
     <string name="button_add">Добавить</string>
@@ -27,4 +29,8 @@
     <string name="enable_adult_content">Включить контент для взрослых</string>
     <string name="note">Заметка</string>
     <string name="delete_note">Удалить</string>
+    <string name="get_contacts">Получить контакты</string>
+    <string name="contacts_from_phone">Контакты с телефона</string>
+    <string name="contacts_error">Ошибка при получении контактов с устройства</string>
+    <string name="cancel_contacts_permission">Отказано в доступе к контактам</string>
 </resources>
