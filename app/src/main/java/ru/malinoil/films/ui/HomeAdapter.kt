@@ -1,7 +1,6 @@
-package ru.malinoil.films.model
+package ru.malinoil.films.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,11 +22,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeCategoryHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeCategoryHolder {
-        return HomeCategoryHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.films_category, parent, false),
-            filmClickListener
-        )
+        return HomeCategoryHolder(parent, filmClickListener)
     }
 
     override fun onBindViewHolder(holder: HomeCategoryHolder, position: Int) {
@@ -39,8 +34,10 @@ class HomeAdapter : RecyclerView.Adapter<HomeCategoryHolder>() {
     }
 }
 
-class HomeCategoryHolder(itemView: View, listener: FilmsAdapter.OnFilmClickListener?) :
-    RecyclerView.ViewHolder(itemView) {
+class HomeCategoryHolder(parent: ViewGroup, listener: FilmsAdapter.OnFilmClickListener?) :
+    RecyclerView.ViewHolder(
+        LayoutInflater.from(parent.context).inflate(R.layout.films_category, parent, false)
+    ) {
     private var binding: FilmsCategoryBinding? = null
     private var filmClickListener: FilmsAdapter.OnFilmClickListener? = listener
 

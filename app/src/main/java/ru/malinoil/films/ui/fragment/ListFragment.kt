@@ -10,15 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.malinoil.films.MyApplication
 import ru.malinoil.films.R
 import ru.malinoil.films.databinding.FragmentMainBinding
-import ru.malinoil.films.model.FilmsAdapter
-import ru.malinoil.films.model.HomeAdapter
 import ru.malinoil.films.model.entities.CategoryEntity
 import ru.malinoil.films.model.entities.FilmEntity
 import ru.malinoil.films.model.repositories.impls.CategoriesContract
 import ru.malinoil.films.presenter.CategoriesPresenterImpl
+import ru.malinoil.films.ui.FilmsAdapter
+import ru.malinoil.films.ui.HomeAdapter
 
 class ListFragment() : Fragment(), CategoriesContract.View {
-    private var binding: FragmentMainBinding? = null
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
     private var adapter: HomeAdapter? = null
     private val app: MyApplication by lazy { activity?.application as MyApplication }
     private lateinit var presenter: CategoriesContract.Presenter
@@ -43,7 +44,7 @@ class ListFragment() : Fragment(), CategoriesContract.View {
         super.onViewCreated(view, savedInstanceState)
         presenter = CategoriesPresenterImpl(app.retrofit)
         presenter.attach(this)
-        binding = FragmentMainBinding.bind(view)
+        _binding = FragmentMainBinding.bind(view)
         adapter = HomeAdapter()
         adapter!!.setOnFilmClickListener(object : FilmsAdapter.OnFilmClickListener {
             override fun onClick(film: FilmEntity) {
@@ -57,13 +58,15 @@ class ListFragment() : Fragment(), CategoriesContract.View {
             updateData(categories)
         }
 
-        binding!!.homeRecycler.layoutManager = LinearLayoutManager(context)
-        binding!!.homeRecycler.adapter = adapter
+        binding.apply {
+            homeRecycler.layoutManager = LinearLayoutManager(context)
+            homeRecycler.adapter = adapter
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
         presenter.detach()
     }
 
