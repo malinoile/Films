@@ -2,10 +2,10 @@ package ru.malinoil.films.presenter
 
 import android.util.Log
 import retrofit2.Retrofit
+import ru.malinoil.films.model.contracts.CategoriesContract
 import ru.malinoil.films.model.entities.CategoryEntity
 import ru.malinoil.films.model.entities.TitleType
 import ru.malinoil.films.model.repositories.FilmsRepository
-import ru.malinoil.films.model.repositories.impls.CategoriesContract
 import ru.malinoil.films.model.repositories.impls.network.NetworkFilmsRepositoryImpl
 
 class CategoriesPresenterImpl(private val retrofit: Retrofit) : CategoriesContract.Presenter {

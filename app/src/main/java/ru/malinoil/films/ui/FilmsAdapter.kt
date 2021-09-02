@@ -7,8 +7,7 @@ import com.bumptech.glide.Glide
 import ru.malinoil.films.R
 import ru.malinoil.films.databinding.FilmCardBinding
 import ru.malinoil.films.model.entities.FilmEntity
-
-private const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
+import ru.malinoil.films.ui.fragment.FilmFragment
 
 class FilmsAdapter : RecyclerView.Adapter<FilmHolder>() {
     private var listFilms: List<FilmEntity> = emptyList()
@@ -67,7 +66,7 @@ class FilmHolder(parent: ViewGroup, filmClickListener: FilmsAdapter.OnFilmClickL
             binding?.filmRateTextView?.text = film.rate.toString()
         }
         binding?.filmTitleTextView?.text = film.name
-        Glide.with(itemView.context).load("$IMAGE_BASE_URL${film.poster}")
+        Glide.with(itemView.context).load("${FilmFragment.IMAGE_BASE_URL}${film.poster}")
             .into(binding!!.filmImageView)
     }
 }

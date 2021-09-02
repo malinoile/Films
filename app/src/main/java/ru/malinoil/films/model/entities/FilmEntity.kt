@@ -20,13 +20,17 @@ data class FilmEntity(
     @SerializedName("overview")
     var description: String?,
     @SerializedName("poster_path")
-    val poster: String?
+    val poster: String?,
+    @SerializedName("genres")
+    var genres: List<GenreEntity>? = null,
+    @SerializedName("budget")
+    var budget: String? = null,
+    @SerializedName("revenue")
+    var fees: String? = null
+
 ) : Parcelable {
     var type: TitleType? = null
     var isFavorite: Boolean = false
-    var budget: Int? = null
-    var fees: Int? = null
-    var genres: String? = null
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -36,12 +40,12 @@ data class FilmEntity(
         parcel.readString().toString(),
         parcel.readValue(Float::class.java.classLoader) as? Float,
         parcel.readString(),
+        parcel.readString(),
+        parcel.createTypedArrayList(GenreEntity),
+        parcel.readString(),
         parcel.readString()
     ) {
         isFavorite = parcel.readByte() != 0.toByte()
-        budget = parcel.readValue(Int::class.java.classLoader) as? Int
-        fees = parcel.readValue(Int::class.java.classLoader) as? Int
-        genres = parcel.readString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -53,10 +57,10 @@ data class FilmEntity(
         parcel.writeValue(rate)
         parcel.writeString(description)
         parcel.writeString(poster)
+        parcel.writeTypedList(genres)
+        parcel.writeString(budget)
+        parcel.writeString(fees)
         parcel.writeByte(if (isFavorite) 1 else 0)
-        parcel.writeValue(budget)
-        parcel.writeValue(fees)
-        parcel.writeString(genres)
     }
 
     override fun describeContents(): Int {
@@ -73,5 +77,11 @@ data class FilmEntity(
         }
     }
 
-
+    fun getGenresString(): String {
+        val stringBuilder = StringBuilder()
+        genres?.forEach {
+            stringBuilder.append(", ").append(it.name)
+        }
+        return stringBuilder.toString()
+    }
 }

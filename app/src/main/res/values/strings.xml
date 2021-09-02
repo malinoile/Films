@@ -11,6 +11,8 @@
     <string name="edit_note">Редактирование заметки</string>
     <string name="ok_button">Ок</string>
     <string name="cancel_button">Отмена</string>
+    <string name="undefined">Не указано</string>
+    <string name="loading">Загрузка</string>
 
     <string name="new_title">Новинки</string>
     <string name="coming_title">Скоро...</string>
@@ -23,14 +25,22 @@
     <string name="search">Поиск</string>
     <string name="settings">Настройки</string>
 
-    <string name="fake_budget">Бюджет: $1 млн</string>
-    <string name="fake_fees">Сборы: $2.5 млн</string>
-    <string name="fake_description">Фейковое описание фильма</string>
+    <string name="prefix_budget">Бюджет:</string>
+    <string name="prefix_fees">Сборы:</string>
     <string name="enable_adult_content">Включить контент для взрослых</string>
     <string name="note">Заметка</string>
     <string name="delete_note">Удалить</string>
     <string name="get_contacts">Получить контакты</string>
     <string name="contacts_from_phone">Контакты с телефона</string>
     <string name="contacts_error">Ошибка при получении контактов с устройства</string>
+    <string name="geolocation_error">Ошибка при получении данных геолокации</string>
     <string name="cancel_contacts_permission">Отказано в доступе к контактам</string>
+    <string name="cancel_geolocation_permission">Отказано в доступе к GPS</string>
+    <string name="big_brother">Большой Брат</string>
+    <string name="self_geolocation">Где я?</string>
+    <string name="map">Карта</string>
+    <string name="geolocation">Геолокация</string>
+    <string name="film_info">Информация о фильме</string>
+    <string name="request_location">Указать вручную</string>
+    <string name="select_your_location">Укажите ваше местоположение</string>
 </resources>
