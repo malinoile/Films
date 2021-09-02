@@ -4,6 +4,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import ru.malinoil.films.model.entities.FilmEntity
 import ru.malinoil.films.model.entities.ResultEntity
 import ru.malinoil.films.model.entities.TitleType
 import ru.malinoil.films.model.repositories.FilmsRepository
@@ -13,6 +14,7 @@ private const val NOW_PLAYING_URL = "now_playing"
 
 class NetworkFilmsRepositoryImpl(retrofit: Retrofit) : FilmsRepository {
     private val apiService = retrofit.create(FilmsAPI::class.java)
+
     override fun getFilmsForType(
         type: TitleType,
         onSuccess: (ResultEntity) -> Unit,
@@ -32,6 +34,27 @@ class NetworkFilmsRepositoryImpl(retrofit: Retrofit) : FilmsRepository {
                 }
 
                 override fun onFailure(call: Call<ResultEntity>, t: Throwable) {
+                    onError(t)
+                }
+            })
+    }
+
+    override fun getFullInfo(
+        filmId: Int,
+        onSuccess: (FilmEntity) -> Unit,
+        onError: (Throwable) -> Unit
+    ) {
+        apiService.getFullInfoAboutFilm(filmId)
+            .enqueue(object : Callback<FilmEntity> {
+                override fun onResponse(call: Call<FilmEntity>, response: Response<FilmEntity>) {
+                    if (response.isSuccessful) {
+                        response.body()?.let { onSuccess(it) }
+                    } else {
+                        onError(Throwable("Api code: ${response.code()}"))
+                    }
+                }
+
+                override fun onFailure(call: Call<FilmEntity>, t: Throwable) {
                     onError(t)
                 }
             })

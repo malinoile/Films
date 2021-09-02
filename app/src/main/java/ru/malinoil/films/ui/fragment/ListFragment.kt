@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.malinoil.films.MyApplication
 import ru.malinoil.films.R
 import ru.malinoil.films.databinding.FragmentMainBinding
+import ru.malinoil.films.model.contracts.CategoriesContract
 import ru.malinoil.films.model.entities.CategoryEntity
 import ru.malinoil.films.model.entities.FilmEntity
-import ru.malinoil.films.model.repositories.impls.CategoriesContract
 import ru.malinoil.films.presenter.CategoriesPresenterImpl
 import ru.malinoil.films.ui.FilmsAdapter
 import ru.malinoil.films.ui.HomeAdapter

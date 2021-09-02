@@ -16,4 +16,8 @@
         android:id="@+id/navigation_contacts"
         android:title="@string/contacts_from_phone" />
 
+    <item
+        android:id="@+id/navigation_map"
+        android:title="@string/big_brother" />
+
 </menu>

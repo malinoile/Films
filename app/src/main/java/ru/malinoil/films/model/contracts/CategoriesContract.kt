@@ -1,4 +1,4 @@
-package ru.malinoil.films.model.repositories.impls
+package ru.malinoil.films.model.contracts
 
 import ru.malinoil.films.model.entities.CategoryEntity
 

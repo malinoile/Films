@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
 
-            app:layout_constraintBottom_toTopOf="@+id/add_note_button"
+            app:layout_constraintBottom_toTopOf="@+id/note_buttons_layout"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/original_title_text_view">
@@ -77,10 +77,6 @@
 
                 <TextView
                     android:id="@+id/genres_and_year_text_view"
-                    style="@style/full_width_text_around_image_film" />
-
-                <TextView
-                    android:id="@+id/duration_text_view"
                     style="@style/full_width_text_around_image_film" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
