@@ -43,4 +43,7 @@
     <string name="film_info">Информация о фильме</string>
     <string name="request_location">Указать вручную</string>
     <string name="select_your_location">Укажите ваше местоположение</string>
+
+    <string name="notification_movie_channel_name">Уведомления о фильмах</string>
+    <string name="notification_movie_channel_description">Уведомления в выходе новинок, изменении дат выхода</string>
 </resources>

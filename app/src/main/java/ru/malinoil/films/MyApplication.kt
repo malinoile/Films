@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.malinoil.films.model.NotificationHelper
 import ru.malinoil.films.model.repositories.impls.room.FilmsDatabase
 
 private const val BASE_URL = "https://api.themoviedb.org"
@@ -20,5 +21,10 @@ class MyApplication : Application() {
     val database by lazy {
         Room.databaseBuilder(applicationContext, FilmsDatabase::class.java, DATABASE_NAME)
             .build()
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        NotificationHelper.initNotificationChannels(this)
     }
 }
