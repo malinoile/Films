@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.malinoil.films.databinding.ActivityMainBinding
+import ru.malinoil.films.model.NotificationHelper
 import ru.malinoil.films.model.entities.FilmEntity
 import ru.malinoil.films.ui.fragment.*
 
@@ -94,7 +97,7 @@ class MainActivity : AppCompatActivity(), ListFragment.Contract {
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 }
                 R.id.navigation_favorite -> {
-
+                    sendNotify()
                 }
                 R.id.navigation_category -> {
                 }
@@ -121,5 +124,16 @@ class MainActivity : AppCompatActivity(), ListFragment.Contract {
         } else {
             supportActionBar?.title = getString(R.string.app_name)
         }
+    }
+
+    private fun sendNotify() {
+        val notification = NotificationCompat.Builder(this, NotificationHelper.MOVIE_CHANNEL_ID)
+            .setContentTitle("213 ивет")
+            .setSubText("Текста")
+            .setSmallIcon(R.drawable.ic_notification_movie)
+            .setAutoCancel(true)
+            .build()
+        val notificationManager = NotificationManagerCompat.from(this)
+        notificationManager.notify(NotificationHelper.CLICK_NOTIFICATION_ID, notification)
     }
 }
