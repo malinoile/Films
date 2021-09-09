@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="main">Старт</string>
+    <string name="favorite">Любимое</string>
+    <string name="category">Виды</string>
+    <string name="search">Поиск</string>
+    <string name="settings">Параметры</string>
+
+    <string name="new_title">Только вышло</string>
+    <string name="coming_title">Скоро выйдет...</string>
+    <string name="high_rate_title">Наиболее привлекательные</string>
+    <string name="now_title">Смотрят сейчас</string>
+
+    <string name="film_info">Просмотр фильма</string>
+
+</resources>
